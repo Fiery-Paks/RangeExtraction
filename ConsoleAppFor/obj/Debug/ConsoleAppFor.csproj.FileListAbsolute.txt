@@ -1,0 +1,8 @@
+C:\Users\Паокин\Desktop\Алгоритмизация\Циклы\ConsoleAppFor\ConsoleAppFor\bin\Debug\ConsoleAppFor.exe.config
+C:\Users\Паокин\Desktop\Алгоритмизация\Циклы\ConsoleAppFor\ConsoleAppFor\bin\Debug\ConsoleAppFor.exe
+C:\Users\Паокин\Desktop\Алгоритмизация\Циклы\ConsoleAppFor\ConsoleAppFor\bin\Debug\ConsoleAppFor.pdb
+C:\Users\Паокин\Desktop\Алгоритмизация\Циклы\ConsoleAppFor\ConsoleAppFor\obj\Debug\ConsoleAppFor.csproj.AssemblyReference.cache
+C:\Users\Паокин\Desktop\Алгоритмизация\Циклы\ConsoleAppFor\ConsoleAppFor\obj\Debug\ConsoleAppFor.csproj.SuggestedBindingRedirects.cache
+C:\Users\Паокин\Desktop\Алгоритмизация\Циклы\ConsoleAppFor\ConsoleAppFor\obj\Debug\ConsoleAppFor.csproj.CoreCompileInputs.cache
+C:\Users\Паокин\Desktop\Алгоритмизация\Циклы\ConsoleAppFor\ConsoleAppFor\obj\Debug\ConsoleAppFor.exe
+C:\Users\Паокин\Desktop\Алгоритмизация\Циклы\ConsoleAppFor\ConsoleAppFor\obj\Debug\ConsoleAppFor.pdb
