@@ -40,6 +40,17 @@ namespace ConsoleAppFor
                 return true;
             return false;
         }
+        protected virtual List<string> Concatenation(List<string> strings)
+        {
+            Dictionary<string, Types> list = new Dictionary<string, Types>();
+
+            
+            for (int i = 0; i < strings.Count; i++)
+            {
+                list.Add(new KeyValuePair("w", TypeDefinition("")));
+            }
+            return strings;
+        }
         protected virtual List<string> Separation(string enterText)
         {
             var split_list = new List<string>();
@@ -57,7 +68,8 @@ namespace ConsoleAppFor
             List<string> split_ = new List<string>();
             foreach (string s in strings)
             {
-                List<string>() list =  Separation(s);
+                List<string> list =  Separation(s);
+
             }
         }
 
