@@ -8,15 +8,27 @@ namespace ConsoleAppFor
 {
     public class RangeExtraction
     {
+        protected class ElementPair
+        {
+            public string element;
+            public Types types;
+
+            public ElementPair(string element, Types types)
+            {
+                this.element = element ?? throw new ArgumentNullException(nameof(element));
+                this.types = types;
+            }
+        }
         protected enum Types
         {
             Number,
             Dash
         }
 
-        private string input;
-        private int[] mass;
-        private List<string> strings;
+        protected string input;
+        protected int[] mass;
+        protected List<string> strings;
+
 
         public RangeExtraction(string input)
         {
@@ -40,16 +52,47 @@ namespace ConsoleAppFor
                 return true;
             return false;
         }
-        protected virtual List<string> Concatenation(List<string> strings)
+        protected virtual void ConcatNumber(ref List<ElementPair> elements)
         {
-            Dictionary<string, Types> list = new Dictionary<string, Types>();
-
-            
-            for (int i = 0; i < strings.Count; i++)
+            for (int i = 0; i < elements.Count; i++)
             {
-                list.Add(new KeyValuePair("w", TypeDefinition("")));
+                if (i != elements.Count - 1
+                && elements[i].types == Types.Number
+                && elements[i + 1].types == Types.Number)
+                {
+                    elements[i].element += elements[i + 1].element;
+                    elements.Remove(elements[i + 1]);
+                    i--;
+                }
             }
-            return strings;
+            for (int i = 0; i < elements.Count; i++)
+            {
+                if (i == 0 && elements[i].types == Types.Dash)
+                {
+                    elements[i].element += elements[i + 1].element;
+                    elements.Remove(elements[i + 1]);
+                    elements[i].types = Types.Number;
+                }
+                if (i != elements.Count - 1
+                && elements[i].types == Types.Dash
+                && elements[i + 1].types == Types.Dash)
+                {
+                    elements[i + 1].element += elements[i + 2].element;
+                    elements.Remove(elements[i + 2]);
+                    elements[i + 1].types = Types.Number;
+                }
+            }
+            elements.RemoveAll(x => x.types == Types.Dash);
+        }
+        protected virtual List<ElementPair> Concatenation(List<string> strings)
+        {
+            List<ElementPair> elements = new List<ElementPair>();
+            foreach (string s in strings)
+                elements.Add(new ElementPair(s, TypeDefinition(s)));
+
+            ConcatNumber(ref elements);
+
+            return elements;
         }
         protected virtual List<string> Separation(string enterText)
         {
@@ -60,17 +103,23 @@ namespace ConsoleAppFor
             }
             return split_list;
         }
+        protected virtual List<int> CreateArray(List<ElementPair> elements)
+        {
+            elements.First();
+            return new List<int> { 0, 1 };
+        }
         public void Split(string text)
         {
             text = text.Replace(" ", "").Replace("\t", "").Replace("\n", "");
             strings = text.Split(',').ToList();
 
-            List<string> split_ = new List<string>();
             foreach (string s in strings)
             {
-                List<string> list =  Separation(s);
+                List<string> split_ = Separation(s);
+                List<ElementPair> pairs = Concatenation(split_);
 
             }
+
         }
 
         public int[] Parse()
