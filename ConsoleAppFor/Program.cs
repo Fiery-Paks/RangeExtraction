@@ -11,7 +11,7 @@ namespace ConsoleAppFor
         static void Main(string[] args)
         {
             RangeExtraction rangeExtraction = new RangeExtraction();
-            rangeExtraction.Split("-100--30,5454,65695,45,75");
+            rangeExtraction.Split("-100--30,-20,0,15,30-45");
         }
     }
 }

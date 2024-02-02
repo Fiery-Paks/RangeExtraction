@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -103,29 +104,42 @@ namespace ConsoleAppFor
             }
             return split_list;
         }
-        protected virtual List<int> CreateArray(List<ElementPair> elements)
+        protected virtual List<int> CreateList(List<ElementPair> elements)
         {
-            elements.First();
-            return new List<int> { 0, 1 };
+
+            if (elements.Count != 1)
+            {
+                var ints = new List<int>();
+                ints.Add(int.Parse(elements.First().element));
+                ints.Add(int.Parse(elements.Last().element));
+                return ints;
+            }
+            return new List<int> { int.Parse(elements.First().element) };
         }
-        public void Split(string text)
+        protected virtual List<int> CreateFullArray(List<int> ints)
+        {
+            List<int> full_array = new List<int>();
+            for (int i = ints.Min(); i <= ints.Max(); i++)
+            {
+                full_array.Add(i);
+            }
+            return full_array;
+        }
+        public List<int> Split(string text)
         {
             text = text.Replace(" ", "").Replace("\t", "").Replace("\n", "");
             strings = text.Split(',').ToList();
-
+            List<int> elements = new List<int>();
             foreach (string s in strings)
             {
-                List<string> split_ = Separation(s);
-                List<ElementPair> pairs = Concatenation(split_);
-
+                elements.AddRange(CreateList(Concatenation(Separation(s))));
             }
-
+            return CreateFullArray(elements);
         }
 
-        public int[] Parse()
+        public int[] Parse(string text)
         {
-
-            return mass;
+            return Split(text).ToArray();
         }
     }
 }
